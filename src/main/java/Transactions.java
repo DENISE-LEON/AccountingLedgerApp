@@ -72,7 +72,7 @@ public class Transactions {
         this.time = LocalTime.now();
         this.description = description;
         this.vendor = vendor;
-        this.amount = amount;
+        this.amount = -Math.abs(amount);
     }
 
     //updates the total, returns the value and is updated each time a transaction is added
