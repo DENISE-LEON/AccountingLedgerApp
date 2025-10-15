@@ -1,26 +1,35 @@
-2024-10-25|15:55:10|Freelance Payout|Upwork|300.00
-2024-11-06|09:30:00|New laptop|Best Buy|-899.00
-2024-12-18|11:20:00|End-of-year bonus|Acme Payroll|1200.00
-2025-01-29|13:45:55|Groceries|Whole Foods|-83.67
-2025-02-11|20:30:00|Valentine’s gift|Etsy|-4.00
-2025-02-27|16:00:00|Freelance Design Payment|Canva Marketplace|620.00
-2025-03-14|09:12:50|Coffee run|Dunkin'|-4.95
-2025-03-26|17:30:00|Streaming subscription|Netflix|-15.99
-2025-04-09|08:45:22|Paycheck|Acme Payroll|2500.00
-2025-04-22|10:03:45|Rent|Sunrise Properties|-1200.00
-2025-05-02|18:10:10|Cat birthday catering|Meowlicious |-109.88
-2025-05-15|09:15:00|Tax refund|IRS|325.00
-2025-05-29|11:00:00|Gas refill|Shell|-43.22
-2025-06-04|15:45:33|Sold old phone|Facebook Marketplace|180.00
-2025-06-18|19:22:12|Clothing purchase|Zara|-89.99
-2025-07-01|08:59:00|Paycheck|Acme Payroll|2500.00
-2025-07-14|12:40:05|Lunch meeting|Panera Bread|-22.15
-2025-07-25|09:30:00|Utility bill|PowerCo|-98.72
-2025-08-01|20:17:03|Concert tickets|StubHub|-120.00
-2025-08-10|16:20:00|Side gig payment|Fiverr|1500.00
-2025-08-21|07:55:44|Morning coffee|Starbucks|-5.25
-2025-09-04|13:12:31|Phone bill|VeriCall|-68.49
-2025-09-15|10:00:00|Paycheck|Acme Payroll|2500.00
-2025-09-28|18:45:02|Dinner with friends|Sushi Garden|-58.90
-2025-10-10|09:18:43|Groceries|Trader Joe's|-72.34
-2025-10-13|14:35:12|Freelance Project Payout|Upwork|850.00
+Deposit|2024-10-20|09:15|Monthly paycheck|Company Payroll|1800.00
+Withdrawal|2024-10-22|14:30|Groceries|Trader Joe's|-65.23
+Withdrawal|2024-11-02|10:00|Electric bill payment|ConEdison|-120.50
+Withdrawal|2024-11-10|20:15|Movie night|AMC Theatres|-45.00
+Deposit|2024-11-28|18:00|Birthday money|Family|200.00
+Withdrawal|2024-12-01|08:45|Security deposit|Landlord|-250.00
+Withdrawal|2024-12-05|13:10|Uber rides|Uber|-60.00
+Deposit|2024-12-15|19:45|Website project|Freelance Client|300.00
+Withdrawal|2024-12-24|17:25|Christmas gifts|Target|-90.00
+Withdrawal|2025-01-03|12:30|Takeout dinner|DoorDash|-50.75
+Deposit|2025-01-15|09:10|January paycheck|Company Payroll|1800.00
+Withdrawal|2025-01-20|07:45|Gym membership|Anytime Fitness|-95.00
+Withdrawal|2025-02-10|11:00|Weekly essentials|Whole Foods|-80.00
+Withdrawal|2025-02-14|18:30|Valentine’s Day flowers|Floral Studio|-35.00
+Deposit|2025-02-25|10:20|Returned item|Retail Refund|150.00
+Withdrawal|2025-03-01|08:00|Monthly rent|Landlord|-250.00
+Deposit|2025-03-10|21:15|Graphic design gig|Freelance Client|400.00
+Withdrawal|2025-03-18|16:00|Spring wardrobe|Zara|-120.00
+Withdrawal|2025-04-02|09:40|Water and gas bill|NYC Utilities|-65.00
+Withdrawal|2025-04-12|07:50|Bus pass|MTA|-30.00
+Deposit|2025-04-28|09:10|Monthly paycheck|Company Payroll|1800.00
+Withdrawal|2025-05-09|15:25|Groceries|Trader Joe's|-70.00
+Deposit|2025-05-15|11:45|Performance reward|Company Bonus|250.00
+Withdrawal|2025-06-02|20:10|Concert tickets|Ticketmaster|-150.00
+Withdrawal|2025-06-18|09:00|Coffee and snacks|Starbucks|-25.00
+Withdrawal|2025-07-01|08:00|Monthly rent|Landlord|-250.00
+Deposit|2025-07-15|09:15|July paycheck|Company Payroll|1800.00
+Withdrawal|2025-07-22|10:45|Electric bill|ConEdison|-90.00
+Withdrawal|2025-08-04|13:25|Pharmacy|CVS|-60.00
+Deposit|2025-08-20|19:00|Family support|Mom|200.00
+Withdrawal|2025-09-05|08:10|Gas refill|Shell|-75.00
+Deposit|2025-09-15|09:05|September paycheck|Company Payroll|1800.00
+Withdrawal|2025-09-22|12:15|Lunch with friends|Panera|-40.00
+Withdrawal|2025-10-01|08:00|Monthly rent|Landlord|-250.00
+Deposit|2025-10-10|22:45|App development|Freelance Client|500.00

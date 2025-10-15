@@ -2,11 +2,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Transaction {
+    private String type;
     private LocalDate date;
     private LocalTime time;
     private String description;
     private String vendor;
     private double amount;
+
+    public String getType() {
+        return type;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -26,6 +31,10 @@ public class Transaction {
 
     public double getAmount() {
         return amount;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setDate(LocalDate date) {
@@ -48,7 +57,13 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
+    public Transaction(String type) {
+        this.type = type;
+    }
+
+    public Transaction(String type,LocalDate date, LocalTime time, String description, String vendor, double amount) {
+
+        this.type = type;
         this.date = date;
         this.time = time;
         this.description = description;

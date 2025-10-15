@@ -4,14 +4,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Home {
     public static Scanner scanner = new Scanner(System.in);
     //create arraylist outside main to access in all methods
     public static ArrayList<Transaction> transaction = new ArrayList<>();
+
 
     public static void main(String[] args) {
 
@@ -22,9 +21,6 @@ public class Home {
         System.out.println("Welcome to the Accounting Ledger App");
 
         AppGuide();
-
-        //test
-        //System.out.println(transaction);
 
 
     }
@@ -66,7 +62,7 @@ public class Home {
                 AppGuide();
 
 
-            //add default for error handle
+                //add default for error handle
         }
     }
 
@@ -91,7 +87,7 @@ public class Home {
         //loops through the process numOfDeposits times
 
         for (int i = 1; i <= numOfDeposits; i++) {
-
+            String type = "Deposit";
             LocalDate date = LocalDate.now();
             LocalTime time = LocalTime.now();
             System.out.print("Enter a short description for deposit #" + i + ":" + " ");
@@ -114,7 +110,7 @@ public class Home {
                     scanner.nextLine();
                 }
             } while (!validAmtInput);
-            transactionRecorder(date, time, description, vendor, amount);
+            transactionRecorder(type, date, time, description, vendor, amount);
         }
     }
 
@@ -136,6 +132,7 @@ public class Home {
         } while (!validInput);
 
         for (int i = 1; i <= numOfWithdrawals; i++) {
+            String type = "Withdrawal";
             LocalDate date = LocalDate.now();
             LocalTime time = LocalTime.now();
             System.out.print("Enter a short description for deposit #" + i + ":" + " ");
@@ -159,17 +156,22 @@ public class Home {
                     scanner.nextLine();
                 }
             } while (!validAmtInput);
-            transactionRecorder(date, time, description, vendor, amount);
+            transactionRecorder(type, date, time, description, vendor, amount);
         }
 
     }
 
-    public static void transactionRecorder(LocalDate date, LocalTime time, String description, String vendor, double amount) {
+    public static void transactionRecorder(String type, LocalDate date, LocalTime time, String description, String vendor, double amount) {
         System.out.println("Transaction has been successfully recorded");
         //the new transaction is added to the array list
-        transaction.add(new Transaction(date, time, description, vendor, amount));
+        transaction.add(new Transaction(type, date, time, description, vendor, amount));
         //insert writer
         //move to transactions class?
+    }
+
+    public static String[] splitter(String line) {
+        String[] data = line.split("\\|");
+        return data;
     }
 
     public static void writer(ArrayList<Transaction> transaction) {
@@ -181,35 +183,65 @@ public class Home {
     public static void reader() {
         String filePath = "transactions.csv";
         String line;
-        try(BufferedReader bReader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader bReader = new BufferedReader(new FileReader(filePath))) {
+            while ((line = bReader.readLine()) != null) {
+                String[] data = splitter(line);
 
-        } catch(FileNotFoundException e) {
+                String type = data[0];
+                LocalDate date = LocalDate.parse(data[1]);
+                LocalTime time = LocalTime.parse(data[2]);
+                String description = data[3];
+                String vendor = data[4];
+                double amount = Double.parseDouble(data[5]);
+                transaction.add(new Transaction(type, date, time, description, vendor, amount));
+            }
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("Error");
         }
 
+
     }
 
-        public static void ledgerGuide() {
-            System.out.println("""
-                    What would you like to do?
-                    Your options are:
-                    A) View all transactions
-                    D) View deposits
-                    W) View withdrawals
-                    R) View reports
-                    """);
-            String ledgerChoice = scanner.nextLine().trim().toUpperCase();
 
-            //switch case which directs user to desired place
-            switch (ledgerChoice) {
+    public static void ledgerGuide() {
+        //calling the reader here bc most of these methods need to read from file
+        //avoids duplicate data, avoids having to clear the reader every time
+        reader();
+        System.out.println("""
+                What would you like to do?
+                Your options are:
+                A) View all transactions
+                D) View deposits
+                W) View withdrawals
+                R) View reports
+                H) Go back home
+                """);
+        String ledgerChoice = scanner.nextLine().trim().toUpperCase();
 
+        //switch case which directs user to desired place
+        switch (ledgerChoice) {
+            case "A":
+            case "VIEW ALL TRANSACTIONS":
+                viewAllTransactions();
+                break;
 
-            }
 
         }
-        public static void viewTransactions() {
+
+    }
+
+    public static void viewAllTransactions() {
         //call reader
-        }
+        transaction.stream()
+                .sorted(Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed())
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
+
+
     }
+}
