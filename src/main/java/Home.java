@@ -20,14 +20,14 @@ public class Home {
         //if save/trans app change greeting
         System.out.println("Welcome to the Accounting Ledger App");
 
-        AppGuide();
+        appGuide();
 
 
     }
 
 
     //welcome method: asks the user what they would like to do
-    public static void AppGuide() {
+    public static void appGuide() {
         System.out.println(""" 
                 What would you like to do?
                 Your options are:
@@ -58,8 +58,8 @@ public class Home {
                 System.out.println("Exiting...");
                 System.exit(0);
             default:
-                System.out.println("Invalid input. Please try again");
-                AppGuide();
+                System.out.println("Invalid input. Please try again (valid input example: D)");
+                appGuide();
 
 
                 //add default for error handle
@@ -238,6 +238,16 @@ public class Home {
             case "VIEW WITHDRAWALS":
                 viewWithdrawals();
                 break;
+            case "R":
+            case "VIEW REPORTS":
+                reportsGuide();
+                break;
+            case "H":
+            case "GO BACK HOME":
+                appGuide();
+                break;
+            default:
+                System.out.println("Invalid input. Please try again (valid input example: D)");
 
 
         }
@@ -267,5 +277,30 @@ public class Home {
                         t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
                 ));
     }
+
+    public static void reportsGuide() {
+        System.out.println("""
+                How would you like to view your report?
+                Your options are:
+                M) Month to date
+                PM) Previous month
+                Y) Year to date
+                PY) Previous year
+                V) Search by vendor
+                B) Go back to ledger page
+                """);
+        String reportChoice = scanner.nextLine().toUpperCase().trim();
+
+        //another switch, I love switches
+        switch (reportChoice) {
+
+        }
+
+    }
+
+    public static void monthToDate() {
+
+    }
+
 }
 
