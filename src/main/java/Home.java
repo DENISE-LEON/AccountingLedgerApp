@@ -181,6 +181,7 @@ public class Home {
     }
 
     public static void reader() {
+
         String filePath = "transactions.csv";
         String line;
         try (BufferedReader bReader = new BufferedReader(new FileReader(filePath))) {
@@ -200,7 +201,10 @@ public class Home {
         } catch (IOException e) {
             System.out.println("Error");
         }
-
+        transaction.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime)
+                        .reversed());
 
     }
 
@@ -226,6 +230,14 @@ public class Home {
             case "VIEW ALL TRANSACTIONS":
                 viewAllTransactions();
                 break;
+            case "D":
+            case "VIEW DEPOSITS":
+                viewDeposits();
+                break;
+            case "W":
+            case "VIEW WITHDRAWALS":
+                viewWithdrawals();
+                break;
 
 
         }
@@ -233,15 +245,27 @@ public class Home {
     }
 
     public static void viewAllTransactions() {
-        //call reader
+
         transaction.stream()
-                .sorted(Comparator.comparing(Transaction::getDate)
-                        .thenComparing(Transaction::getTime)
-                        .reversed())
                 .forEach(t -> System.out.println(
                         t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
                 ));
+    }
 
+    public static void viewDeposits() {
+        transaction.stream()
+                .filter(t -> t.getType().equals("Deposit"))
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
+    }
 
+    public static void viewWithdrawals() {
+        transaction.stream()
+                .filter(t -> t.getType().equals("Withdrawal"))
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
     }
 }
+
