@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -165,6 +162,7 @@ public class Home {
         System.out.println("Transaction has been successfully recorded");
         //the new transaction is added to the array list
         transaction.add(new Transaction(type, date, time, description, vendor, amount));
+        writer();
         //insert writer
         //move to transactions class?
     }
@@ -174,9 +172,19 @@ public class Home {
         return data;
     }
 
-    public static void writer(ArrayList<Transaction> transaction) {
+    public static void writer() {
         String filePath = "transactions.csv";
         String line;
+        try(PrintWriter pwriter = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
+            for (Transaction t : transaction) {
+                pwriter.println( t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
+            }
+
+        }catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
 
     }
 
