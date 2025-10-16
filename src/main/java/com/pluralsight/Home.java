@@ -1,12 +1,15 @@
+package com.pluralsight;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
+import com.pluralsight.Ledger.*;
 
 public class Home {
     public static Scanner scanner = new Scanner(System.in);
     //create arraylist outside main to access in all methods
-    public static ArrayList<Transaction> transaction = new ArrayList<>();
+    public static ArrayList<Transaction> transactions = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -15,7 +18,7 @@ public class Home {
         //creating the transactions arrayList
 
         //if save/trans app change greeting
-        System.out.println("Welcome to the Accounting Ledger App");
+        System.out.println("Welcome to the Accounting com.pluralsight.Ledger App");
 
         String runAgain;
 
@@ -67,14 +70,13 @@ public class Home {
                 //add default for error handle
         }
     }
-//maybe combine money in and out
+
+    //maybe combine money in and out
     public static void moneyInProcess() {
         int numOfDeposits = numOfTransactions();
 
 
-
         //loops through the process numOfDeposits times
-
         for (int i = 1; i <= numOfDeposits; i++) {
             String type = "Deposit";
             LocalDate date = LocalDate.now();
@@ -105,7 +107,6 @@ public class Home {
 
     public static void moneyOutProcess() {
         int numOfWithdrawals = numOfTransactions();
-
 
 
         for (int i = 1; i <= numOfWithdrawals; i++) {
@@ -159,10 +160,10 @@ public class Home {
     }
 
     public static void transactionRecorder(String type, LocalDate date, LocalTime time, String description, String vendor, double amount) {
-        System.out.println("Transaction has been successfully recorded");
+        System.out.println("com.pluralsight.Transaction has been successfully recorded");
         //the new transaction is added to the array list
         Transaction newTransaction = new Transaction(type, date, time, description, vendor, amount);
-        transaction.add(newTransaction);
+        transactions.add(newTransaction);
         writer(newTransaction);
         //insert writer
         //move to transactions class?
@@ -189,7 +190,7 @@ public class Home {
 
     public static void reader() {
         //change tra
-        transaction.clear();
+        transactions.clear();
         String filePath = "transactions.csv";
         String line;
         try (BufferedReader bReader = new BufferedReader(new FileReader(filePath))) {
@@ -202,14 +203,14 @@ public class Home {
                 String description = data[3];
                 String vendor = data[4];
                 double amount = Double.parseDouble(data[5]);
-                transaction.add(new Transaction(type, date, time, description, vendor, amount));
+                transactions.add(new Transaction(type, date, time, description, vendor, amount));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
             System.out.println("Error");
         }
-        transaction.sort(
+        transactions.sort(
                 Comparator.comparing(Transaction::getDate)
                         .thenComparing(Transaction::getTime)
                         .reversed());
@@ -236,19 +237,19 @@ public class Home {
         switch (ledgerChoice) {
             case "A":
             case "VIEW ALL TRANSACTIONS":
-                Ledger.viewAllTransactions(transaction);
+                Ledger.viewAllTransactions(transactions);
                 break;
             case "D":
             case "VIEW DEPOSITS":
-                Ledger.viewDeposits(transaction);
+                Ledger.viewDeposits(transactions);
                 break;
             case "W":
             case "VIEW WITHDRAWALS":
-                Ledger.viewWithdrawals(transaction);
+                Ledger.viewWithdrawals(transactions);
                 break;
             case "R":
             case "VIEW REPORTS":
-                reportsGuide();
+                Ledger.reportsGuide(scanner, transactions);
                 break;
             case "H":
             case "GO BACK HOME":
@@ -257,18 +258,16 @@ public class Home {
             default:
                 System.out.println("Invalid input. Please try again (valid input example: D)");
                 ledgerGuide();
-
-
         }
-
     }
 
-
+}
+/*
     public static void reportsGuide() {
 
         transaction.sort(
-                Comparator.comparing(Transaction::getDate)
-                        .thenComparing(Transaction::getTime));
+                Comparator.comparing(com.pluralsight.Transaction::getDate)
+                        .thenComparing(com.pluralsight.Transaction::getTime));
 
 
         System.out.println("""
@@ -311,6 +310,8 @@ public class Home {
         }
 
     }
+
+ *
 
     public static void monthToDateDisplay() {
         //setting the current day to know so reports are always up to date
