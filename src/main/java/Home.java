@@ -279,6 +279,11 @@ public class Home {
     }
 
     public static void reportsGuide() {
+
+        transaction.sort(
+                Comparator.comparing(Transaction::getDate)
+                        .thenComparing(Transaction::getTime));
+
         System.out.println("""
                 How would you like to view your report?
                 Your options are:
@@ -287,20 +292,68 @@ public class Home {
                 Y) Year to date
                 PY) Previous year
                 V) Search by vendor
+                C) Custom search
                 B) Go back to ledger page
                 """);
         String reportChoice = scanner.nextLine().toUpperCase().trim();
 
         //another switch, I love switches
         switch (reportChoice) {
+            case "M":
+            case "MONTH TO DATE":
+                monthToDateDisplay();
+                break;
+            case "PM":
+            case "PREVIOUS MONTH":
+                previousMonthDisplay();
+                break;
+            case "Y":
+            case "YEAR TO DATE":
+                yearToDateDisplay();
+                break;
+
 
         }
 
     }
 
-    public static void monthToDate() {
+    public static void monthToDateDisplay() {
+        //setting the current day to know so reports are always up to date
+        int currentMonth = LocalDate.now().getMonthValue();
+        int currentYear = LocalDate.now().getYear();
+
+        transaction.stream()
+                .filter(t -> t.getDate().getMonthValue() ==currentMonth
+                && t.getDate().getYear() == currentYear)
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
+    }
+
+    public static void previousMonthDisplay() {
+        int prevMonth = LocalDate.now().minusMonths(1).getMonthValue();
+        int currentYear = LocalDate.now().getYear();
+
+        transaction.stream()
+                .filter(t -> t.getDate().getMonthValue() == prevMonth
+                        && t.getDate().getYear() == currentYear)
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
+    }
+
+    public static void yearToDateDisplay() {
+        int currentYear = LocalDate.now().getYear();
+        transaction.stream()
+                .filter(t -> t.getDate().getYear() ==currentYear)
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
 
     }
 
+    public static void previousYearDisplay() {
+
+    }
 }
 
