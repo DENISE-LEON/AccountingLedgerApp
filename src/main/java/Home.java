@@ -248,6 +248,7 @@ public class Home {
                 break;
             default:
                 System.out.println("Invalid input. Please try again (valid input example: D)");
+                ledgerGuide();
 
 
         }
@@ -311,6 +312,14 @@ public class Home {
             case "YEAR TO DATE":
                 yearToDateDisplay();
                 break;
+            case "PY":
+            case "PREVIOUS YEAR":
+                previousYearDisplay();
+                break;
+            case "V":
+            case "SEARCH BY VENDOR":
+                searchByVendor();
+                break;
 
 
         }
@@ -353,6 +362,24 @@ public class Home {
     }
 
     public static void previousYearDisplay() {
+        int prevYear = LocalDate.now().minusYears(1).getYear();
+
+        transaction.stream()
+                .filter(t -> t.getDate().getYear() == prevYear)
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
+    }
+
+    public static void searchByVendor() {
+        System.out.println("enter the name of the vendor");
+       String vendorName = scanner.nextLine();
+
+        transaction.stream()
+                .filter(t -> t.getVendor().equalsIgnoreCase(vendorName))
+                .forEach(t -> System.out.println(
+                        t.getType() + "|" + t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()
+                ));
 
     }
 }
