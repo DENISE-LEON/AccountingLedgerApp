@@ -73,16 +73,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    /*
-    @Override
-    public String toString() {
-        return
-                "date=" + date +
-                ", time=" + time +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount=" + amount ;
-    }*/
+
 }
 
 
