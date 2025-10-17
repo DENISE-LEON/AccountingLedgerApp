@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -55,7 +56,7 @@ public class Ledger {
 
         boolean run = true;
         do {
-            System.out.println("﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌");
+            System.out.println("﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌");
             System.out.println("""
                     What would you like to do?
                     Your options are:
@@ -65,11 +66,9 @@ public class Ledger {
                     R) View reports
                     H) Go back home
                     """);
-            System.out.println("﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌");
             //add pretty formatting
             System.out.println();
             String ledgerChoice = scanner.nextLine().trim().toUpperCase();
-
             //switch case which directs user to desired place
             switch (ledgerChoice) {
                 case "A":
@@ -126,19 +125,22 @@ public class Ledger {
         boolean run = true;
         do {
             //add in formatting
-            System.out.println();
+            System.out.println("﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌");
             System.out.println("""
                     How would you like to view your report?
                     Your options are:
                     M) Month to date
+                    
                     PM) Previous month
+                    
                     Y) Year to date
+                    
                     PY) Previous year
+                    
                     V) Search by vendor
-                    C) Custom search
+                   
                     B) Go back to ledger page
                     """);
-            System.out.println();
 
             String reportChoice = scanner.nextLine().toUpperCase().trim();
             switch (reportChoice) {
@@ -218,12 +220,15 @@ public class Ledger {
                 .forEach(t -> formatPrinter(t));
     }
 
+
     public static void formatPrinter(Transaction t) {
         //formatting so everything aligns nicely
         // %n works like new line
         //very glad I turned this into a method
+        //data formatter to get rid of milliseconds
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
         System.out.printf(
-                "%-12s | %-12s | %-8s | %-25s | %-15s | %10.2f%n",
+                "%-12s | %-10s | %-8s | %-25s | %-15s | %-10.2f%n",
                 t.getType(),
                 t.getDate(),
                 t.getTime().format(timeFormat),

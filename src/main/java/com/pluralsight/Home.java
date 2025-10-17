@@ -16,22 +16,27 @@ public class Home {
         //creating the transactions arrayList
         //if save/trans app change greeting
 
-        System.out.println("Welcome to the Accounting App");
-
+        System.out.println();
+        System.out.println( "˗ˋˏ$ˎˊ˗ 𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 𝓽𝓱𝓮 𝓐𝓬𝓬𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓛𝓮𝓭𝓰𝓮𝓻 𝓐𝓹𝓹 ˗ˋˏ$ˎˊ˗");
+        System.out.println();
         //instead of running the method inside of it's self, created a loop
         //calling method inside itself could lead to crash
         boolean run = true;
         do {
+            System.out.println("﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌");
             System.out.println(""" 
                 What would you like to do?
                 Your options are:
                 D) Record a deposit
+                
                 W) Record a withdrawal
+                
                 L) View your accounting ledger
+                
                 X) Exit
                 """);
-            String homeChoice = scanner.nextLine().trim().toUpperCase();
 
+            String homeChoice = scanner.nextLine().trim().toUpperCase();
             //switch case which directs user to desired place
             switch (homeChoice) {
                 case "D":
