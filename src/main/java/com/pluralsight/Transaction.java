@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
 public class Transaction {
     private String type;
     private LocalDate date;
@@ -11,6 +12,7 @@ public class Transaction {
     private String vendor;
     private double amount;
 
+    // Getters provide access to private fields
     public String getType() {
         return type;
     }
@@ -35,6 +37,7 @@ public class Transaction {
         return amount;
     }
 
+    // Setters allow controlled modification of transaction details
     public void setType(String type) {
         this.type = type;
     }

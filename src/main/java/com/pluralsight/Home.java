@@ -14,8 +14,7 @@ public class Home {
     public static void main(String[] args) {
 
         //creating the transactions arrayList
-        //if save/trans app change greeting
-
+        // Main menu that lets the user record transactions or open the ledger
         System.out.println();
         System.out.println( "˗ˋˏ$ˎˊ˗ 𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 𝓽𝓱𝓮 𝓐𝓬𝓬𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓛𝓮𝓭𝓰𝓮𝓻 𝓐𝓹𝓹 ˗ˋˏ$ˎˊ˗");
         System.out.println();
@@ -166,38 +165,6 @@ public class Home {
         } catch (IOException e) {
             System.out.println("Error");
         }
-    }
-
-    public static String[] splitter(String line) {
-        return line.split("\\|");
-    }
-
-    public static void reader() {
-
-        transactions.clear();
-        String filePath = "transactions.csv";
-        String line;
-        try (BufferedReader bReader = new BufferedReader(new FileReader(filePath))) {
-            while ((line = bReader.readLine()) != null) {
-                String[] data = splitter(line);
-
-                String type = data[0];
-                LocalDate date = LocalDate.parse(data[1]);
-                LocalTime time = LocalTime.parse(data[2]);
-                String description = data[3];
-                String vendor = data[4];
-                double amount = Double.parseDouble(data[5]);
-                transactions.add(new Transaction(type, date, time, description, vendor, amount));
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-        transactions.sort(
-                Comparator.comparing(Transaction::getDate)
-                        .thenComparing(Transaction::getTime)
-                        .reversed());
     }
 
 

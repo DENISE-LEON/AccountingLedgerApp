@@ -15,7 +15,7 @@ import com.pluralsight.Home.*;
 
 public class Ledger {
 
-
+// Splits each line of the CSV into individual fields using the pipe
     public static String[] splitter(String line) {
         //combined into one line that splits returns the split line
         return line.split("\\|");
@@ -48,7 +48,7 @@ public class Ledger {
                         .thenComparing(Transaction::getTime)
                         .reversed());
     }
-
+    // method for viewing and filtering ledger data
     public static void ledgerGuide(Scanner scanner, ArrayList<Transaction> transactions) {
         //calling the reader here bc most of these methods need to read from file
         //avoids duplicate data, avoids having to clear the reader every time
@@ -61,9 +61,13 @@ public class Ledger {
                     What would you like to do?
                     Your options are:
                     A) View all transactions
+                    
                     D) View deposits
+                    
                     W) View withdrawals
+                    
                     R) View reports
+                    
                     H) Go back home
                     """);
             //add pretty formatting
